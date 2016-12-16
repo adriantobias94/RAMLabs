@@ -7,42 +7,37 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 <h:head>
-<title>Java Chips</title>
-<meta name="author" content="The Author"></meta>
+   <title>Java Chips</title>
+   <meta name="author" content="The Author"></meta>
 </h:head>
-        <!-- Add 50px padding top to the body for the navbar -->
+<!-- Add 50px padding top to the body for the navbar -->
 <h:body style="padding-top: 50px; padding-bottom: 20px;">
-<b:navBar brand="R.A.M. Labs" brandHref="contact.jsf" inverse="true" fixed="top">
-    <b:navbarLinks>
-        <b:navLink value="Home" href="index.jsf"></b:navLink>
-        <b:navLink value="Products" href="products.jsf"></b:navLink>
-        <b:navLink class="active" value="Contact" href="contact.jsf"></b:navLink>
-        <b:navLink value="About" href="about.jsf"></b:navLink>
-        <b:dropMenu value="My Account" styleClass="dropmenu-form dropmenu-right">
-            <h:form id="loginForm">
-                <b:inputText placeholder="Username" fieldId="j_username" name="j_username"
-                             value="#{loginBean.username}"
-                             label="Username: " render-label="true"/>
-                <b:message for="@previous" />
-                <b:inputSecret placeholder="Password" id="passwordDiv" fieldId="j_password" name="j_password"
-                               value="#{loginBean.password}"
-                               label="Password: "  render-label="true"/>
-                <b:message for="passwordDiv" />
-                <b:commandButton update="@form" value="Login" onclick="ajax:loginBean.login2()"/>
-            </h:form>
-        </b:dropMenu>
-    </b:navbarLinks>
-</b:navBar>
-    <h:form>
-        <h:panelGrid columns="2" cellpadding="5" style="margin: 0 auto;">
-            <b:image value="15415978_1516279895054222_939886978_n.png"/>
-            <b:inputText placeholder="Search for products">
-                <f:facet name="append">
-                    <b:iconAwesome name="search" />
-                    <b:commandButton type="submit" class="btn btn-default">Search</b:commandButton>
-                </f:facet>
-            </b:inputText>
-        </h:panelGrid>
-    </h:form>
-</h:body>
+   <ui:insert name="navbar">
+      <ui:include src="/templates/navbar.xhtml"></ui:include>
+   </ui:insert>
+
+   <b:container>
+      <h:form>
+      <br />
+      <h1>
+         Contact Page:
+      </h1>
+         <h2>
+            If you have any queries or questions, please fill up the form below and send it. We will reply right away!
+         </h2>
+         <br />
+      <h3>
+         <b:inputText  label="Email"  placeholder="Enter email address...." value="#{contactBean.contact.email}"/>
+
+
+
+
+         <b:panelGrid colSpans="6,4,2" cellpadding="5" label="Description" >
+            <b:inputTextarea rows="6" label="Description" value="#{contactBean.contact.description}" />
+         </b:panelGrid>
+         <b:commandButton value="Submit" look="success" action="#{contactBean.submit()}"/>
+         </h3>
+               </h:form>
+      </b:container>
+   </h:body>
 </html>
