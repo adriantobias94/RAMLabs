@@ -1,63 +1,61 @@
 package apc.entjava.photogallery.dao;
 
-import apc.entjava.photogallery.businesslogic.ItemService;
-import apc.entjava.photogallery.model.Items;
+import apc.entjava.photogallery.businesslogic.AddToCart;
+import apc.entjava.photogallery.model.Product;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import java.util.List;
 
 /**
- * Created by Adrian on 15/12/2016.
+ * Created by jacobcat on 12/2/2016.
  */
-public class ProductDao implements ItemService {
 
-    private EntityManagerFactory erd;
+public class ProductDao implements AddToCart {
 
+    private EntityManagerFactory emf;
     public ProductDao() {
-        erd = Persistence.createEntityManagerFactory("PhotoGalleryDb");
+        emf = Persistence.createEntityManagerFactory("PhotoGalleryDb");
     }
 
+
     @Override
-    public void addItems(Items newItems) {
-        EntityManager em = erd.createEntityManager();
-        em.getTransaction().begin();
+    public Product findProducts(String id) {
+        EntityManager em = emf.createEntityManager();
         try {
-            em.persist(newItems);
+            em.getTransaction().begin();
+            Product product =
+                    em.createQuery("select p from Product p where p.productId = :product_id",
+                            Product.class)
+                            .setParameter("product_id", id)
+                            .getSingleResult();
             em.getTransaction().commit();
-        } catch (Exception e) {
-            em.getTransaction().rollback();
-
+            em.close();
+            return product;
         }
-        em.close();
+        catch(Exception e) {
+            em.getTransaction().rollback();
+            em.close();
+            return null;
+        }
     }
 
     @Override
-    public Items findItem(String itemName) {
-        EntityManager em = erd.createEntityManager();
-        em.getTransaction().begin();
-        Items c = em.find(Items.class, itemName);
-        em.getTransaction().commit();
-
-        return c;
-    }
-    @Override
-    public void deleteItem(String itemName){
-        EntityManager em = erd.createEntityManager();
-        em.getTransaction().begin();
-        Items c = findItem(itemName);
+    public List<Product> getProducts() {
+        EntityManager em = emf.createEntityManager();
         try {
-            em.remove(c);
+            em.getTransaction().begin();
+            List<Product> product =
+                    em.createQuery("from Product", Product.class).getResultList();
             em.getTransaction().commit();
-        } catch (Exception e){
-            em.getTransaction().rollback();
+            em.close();
+            return product;
         }
-        em.close();
-
+        catch(Exception e) {
+            em.getTransaction().rollback();
+            em.close();
+            return null;
+        }
     }
-
-
 }
-
-
-
