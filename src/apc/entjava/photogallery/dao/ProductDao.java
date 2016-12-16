@@ -57,5 +57,29 @@ public class ProductDao implements AddToCart {
             em.close();
             return null;
         }
+
+    }
+
+    public Product findItem(String productName) {
+        EntityManager em = emf.createEntityManager();
+        em.getTransaction().begin();
+        Product c = em.find(Product.class, productName);
+        em.getTransaction().commit();
+
+        return c;
+    }
+
+    public void deleteItem(String productName){
+        EntityManager em = emf.createEntityManager();
+        em.getTransaction().begin();
+        Product c = findItem(productName);
+        try {
+            em.remove(c);
+            em.getTransaction().commit();
+        } catch (Exception e){
+            em.getTransaction().rollback();
+        }
+        em.close();
+
     }
 }
