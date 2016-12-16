@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://xmlns.jcp.org/jsf/passthrough">
+<h:head>
+   <title>R.A.M. Labs</title>
+   <meta name="Java Chips" content="Home"></meta>
+</h:head>
+<!-- Add 50px padding top to the body for the navbar -->
+
+<h:body style="padding-top: 50px; padding-bottom: 20px;">
+   <b:navBar brand="R.A.M. Labs" brandHref="index.jsf" inverse="true" fixed="top">
+      <b:navbarLinks>
+         <b:navLink class ="active" value="Home" href="index.jsf"></b:navLink>
+         <b:navLink value="Products" href="products.jsf"></b:navLink>
+         <b:navLink value="Contact" href="contact.jsf"></b:navLink>
+         <b:navLink value="About" href="about.jsf"></b:navLink>
+      </b:navbarLinks>
+      <h:form class="navbar-form navbar-left hidden-md hidden-sm hidden-xs">
+         <input type="text" class="form-control"/>
+         <button type="submit" class="btn btn-default">Search</button>
+      </h:form>
+      <!-- Following line is needed for TBS 3.0.1 (panel content overflow issue) -->
+      <b:navbarLinks pull="right"><b:navLink value="    " href="#"></b:navLink></b:navbarLinks>
+      <b:navbarLinks pull="right" styleClass="hidden-xs">
+         <b:dropMenu value="My Account">
+            <b:navLink value="Log-in" href="#"></b:navLink>
+            <b:navLink value="Sign-out" href="#"></b:navLink>
+         </b:dropMenu>
+      </b:navbarLinks>
+   </b:navBar>
+   <b:jumbotron>
+      <b:container>
+         <h:form>
+            <br/>
+         <p>Featured items from:</p>
+         <b:carousel id="parque2" style="width:400px" disabled="true">
+            <b:carouselItem>
+               <img src="asus_logo.jpg" alt="Valladolid" />
+            </b:carouselItem>
+            <b:carouselItem>
+               <img src="Kingston-HyperX-logo-edit.jpg" alt="Valladolid" />
+            </b:carouselItem>
+            <b:carouselItem>
+               <img src="MSI-Featured.jpg" alt="Valladolid" />
+            </b:carouselItem>
+            <b:carouselItem>
+               <img src="razer-hd-61537.jpg" alt="Valladolid" />
+            </b:carouselItem>
+            <b:carouselItem>
+               <img src="w_500.jpg" alt="Valladolid" />
+            </b:carouselItem>
+         </b:carousel>
+         </h:form>
+      </b:container>
+   </b:jumbotron>
+   <b:form>
+   <b:container>
+      <b:row>
+         <b:column col-md="4">
+            <h2>Register</h2>
+            <p>Don't have an account register to start shopping and enjoy limited priviliges.</p>
+            <b:modal id="reg" title="Registration" styleClass="modalPseudoClass"
+                     closable="true" close-on-escape="true" backdrop="false">
+               <b:inputText id="firstName" label="First Name:"
+                            value="#{userBean.user.firstName}" required="true"
+                            renderLabel="true" col-xs="6" label-col-xs="2" />
+               <b:inputText id="lastName" label="Last Name:"
+                            value="#{userBean.user.lastName}" required="true"
+                            renderLabel="true" col-xs="6" label-col-xs="2" pt:type="string"/>
+               <b:inputText id="homeaddress" label="Home Address:"
+                            value="#{userBean.user.homeAddress}" required="true"
+                            renderLabel="true" col-xs="6" label-col-xs="2" pt:type="string"/>
+               <b:inputText id="shipaddress" label="Ship Address:"
+                            value="#{userBean.user.shipAddress}" required="true"
+                            renderLabel="true" col-xs="6" label-col-xs="2" />
+               <b:inputText id="age" label="Age:"
+                            value="#{userBean.user.age}" required="true"
+                            renderLabel="true" col-xs="6" label-col-xs="2" />
+               <b:inputText id="email" label="Email:"
+                            value="#{userBean.user.email}" required="true"
+                            renderLabel="true" col-xs="6" label-col-xs="2" />
+               <b:inputText id="username" label="User name:"
+                            value="#{userBean.user.userName}" required="true"
+                            renderLabel="true" col-xs="6" label-col-xs="2" />
+
+               <b:inputSecret id="password" label="Password:"
+                              value="#{userBean.user.password}" required="true"
+                              renderLabel="true" col-xs="6" label-col-xs="2" />
+               <b:inputSecret id="confirmPwd" label="Confirm Password:"
+                              value="#{userBean.password}" required="true"
+                              renderLabel="true" col-xs="6" label-col-xs="2" />
+               <f:facet name="footer">
+                  <p align="center">
+                     <b:button id="close" value="Close" look="danger" dismiss="modal" onclick="return false;"/>
+                     <b:button id="ok" value="Submit" look="success" dismiss="modal" onclick="return false;" action="#{userBean.register()}" />
+                  </p>
+               </f:facet>
+            </b:modal>
+            <p><b:button outcome="" value="Sign-up »" onclick="$('.modalPseudoClass').modal();return false;"/></p>
+         </b:column>
+         <b:column col-md="4">
+            <h2>What's New?</h2>
+            <p>Windows 10 Home Single Language (x64) Version 1607 (build 14393.447)
+               Install Language: English (United States)
+               System Locale: English (Philippines)
+               Installed: 10/10/2016 11:12:18 PM
+               Servicing Branch: Current Branch (CB)</p>
+            <p><b:button outcome="" value="View details »"/></p>
+         </b:column>
+         <b:column col-md="4">
+            <h2>Sale 50% Off</h2>
+            <p>ASUSTeK COMPUTER INC. N501JW 1.0
+               System Serial Number: F3N0BC07274314D
+               Chassis Serial Number: F3N0BC07274314D
+               Enclosure Type: Notebook
+            </p>
+            <p><b:button outcome="" value="View details »"/></p>
+         </b:column>
+      </b:row>
+      <hr/>
+   </b:container>
+</b:form>
+</h:body>
+</html>
