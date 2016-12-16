@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<h:head>
+   <title>Java Chips</title>
+   <meta name="author" content="The Author"></meta>
+</h:head>
+<!-- Add 50px padding top to the body for the navbar -->
+<h:body style="padding-top: 50px; padding-bottom: 20px;">
+   <ui:insert name="navbar">
+      <ui:include src="/templates/navbar.xhtml"></ui:include>
+   </ui:insert>
+            <h:form>
+               <h:panelGrid columns="2" cellpadding="5" style="margin: 0 auto;">
+                  <b:image value="15415978_1516279895054222_939886978_n.png"/>
+                  <b:inputText placeholder="Search for products">
+                     <f:facet name="append">
+                        <b:iconAwesome name="search" />
+                        <b:commandButton type="submit" class="btn btn-default">Search</b:commandButton>
+                     </f:facet>
+                  </b:inputText>
+               </h:panelGrid>
+            </h:form>
+   <b:jumbotron>
+      <b:container>
+         <h:form>
+         <p>Featured items from:</p>
+         <b:carousel id="parque2" style="width:400px" disabled="true">
+            <b:carouselItem>
+               <img src="asus_logo.jpg" alt="Valladolid" />
+            </b:carouselItem>
+            <b:carouselItem>
+               <img src="Kingston-HyperX-logo-edit.jpg" alt="Valladolid" />
+            </b:carouselItem>
+            <b:carouselItem>
+               <img src="MSI-Featured.jpg" alt="Valladolid" />
+            </b:carouselItem>
+            <b:carouselItem>
+               <img src="razer-hd-61537.jpg" alt="Valladolid" />
+            </b:carouselItem>
+            <b:carouselItem>
+               <img src="w_500.jpg" alt="Valladolid" />
+            </b:carouselItem>
+         </b:carousel>
+         </h:form>
+      </b:container>
+   </b:jumbotron>
+   <b:container>
+      <b:row>
+         <b:column col-md="4">
+            <h2>What's New?</h2>
+            <p>Windows 10 Home Single Language (x64) Version 1607 (build 14393.447)
+               Install Language: English (United States)
+               System Locale: English (Philippines)
+               Installed: 10/10/2016 11:12:18 PM
+               Servicing Branch: Current Branch (CB)</p>
+            <p><b:button outcome="" value="View details »"/></p>
+         </b:column>
+         <b:column col-md="4">
+            <h2>Sale 50% Off</h2>
+            <p>ASUSTeK COMPUTER INC. N501JW 1.0
+               System Serial Number: F3N0BC07274314D
+               Chassis Serial Number: F3N0BC07274314D
+               Enclosure Type: Notebook
+            </p>
+            <p><b:button outcome="" value="View details »"/></p>
+         </b:column>
+         <b:column col-md="4">
+            <h2>Register</h2>
+            <p>Don't have an account register to start shopping and enjoy limited priviliges.</p>
+            <p><b:button outcome="" value="Sign-up »"/></p>
+         </b:column>
+      </b:row>
+      <hr/>
+   </b:container>
+
+</h:body>
+</html>
