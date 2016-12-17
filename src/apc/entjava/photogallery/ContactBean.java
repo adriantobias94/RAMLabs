@@ -4,7 +4,7 @@ import apc.entjava.photogallery.dao.ContactDao;
 import apc.entjava.photogallery.model.Contact;
 import apc.entjava.photogallery.businesslogic.ContactInterface;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
+
 
 /**
  * Created by Adrian on 10/12/2016.
